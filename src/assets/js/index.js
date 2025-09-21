@@ -55,11 +55,21 @@ class Splash {
         async checkUpdate() {
             this.setStatus(`Recherche de mise à jour...`);
     
+            // Timeout de 15 secondes pour la vérification des mises à jour
+            const updateTimeout = setTimeout(() => {
+                console.log('Update check timeout, proceeding to maintenance check');
+                this.maintenanceCheck();
+            }, 15000);
+    
             ipcRenderer.invoke('update-app').then().catch(err => {
-                return this.shutdown(`erreur lors de la recherche de mise à jour :<br>${err.message}`);
+                clearTimeout(updateTimeout);
+                console.error('Update check failed:', err);
+                // Continuer vers maintenanceCheck même si la vérification échoue
+                this.maintenanceCheck();
             });
     
             ipcRenderer.on('updateAvailable', () => {
+                clearTimeout(updateTimeout);
                 this.setStatus(`Mise à jour disponible !`);
                 if (os.platform() == 'win32') {
                     this.toggleProgress();
@@ -69,7 +79,10 @@ class Splash {
             })
     
             ipcRenderer.on('error', (event, err) => {
-                if (err) return this.shutdown(`${err.message}`);
+                clearTimeout(updateTimeout);
+                console.error('Update error:', err);
+                // Continuer vers maintenanceCheck même en cas d'erreur
+                this.maintenanceCheck();
             })
     
             ipcRenderer.on('download-progress', (event, progress) => {
@@ -78,7 +91,8 @@ class Splash {
             })
     
             ipcRenderer.on('update-not-available', () => {
-                console.error("Mise à jour non disponible");
+                clearTimeout(updateTimeout);
+                console.log("Mise à jour non disponible");
                 this.maintenanceCheck();
             })
         }
@@ -116,13 +130,22 @@ class Splash {
     
     
         async maintenanceCheck() {
-            config.GetConfig().then(res => {
+            // Timeout de 10 secondes pour éviter le blocage
+            const timeout = new Promise((_, reject) => 
+                setTimeout(() => reject(new Error('Timeout')), 10000)
+            );
+            
+            try {
+                const res = await Promise.race([config.GetConfig(), timeout]);
                 if (res.maintenance) return this.shutdown(res.maintenance_message);
                 this.startLauncher();
-            }).catch(e => {
-                console.error(e);
-                return this.shutdown("Aucune connexion internet détectée,<br>veuillez réessayer ultérieurement.");
-            })
+            } catch (e) {
+                console.error('Config fetch failed:', e);
+                // Démarrer le launcher même si la config échoue
+                this.setStatus("Impossible de vérifier la maintenance, démarrage du launcher...");
+                await sleep(2000);
+                this.startLauncher();
+            }
         }
 
 
