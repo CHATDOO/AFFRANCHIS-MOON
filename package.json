@@ -1,7 +1,7 @@
 {
     "name": "AFFRANCHISMOON",
     "preductname": "AFFRANCHISMOON Launcher",
-    "version": "2.0",
+    "version": "2.1",
     "description": "AFFRANCHISMOON modded server launcher",
     "main": "src/app.js",
     "author": "Riptiaz/Boulldogo/Vexato/Luuxis/CHATDOO",
