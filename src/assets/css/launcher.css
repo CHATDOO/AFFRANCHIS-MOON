@@ -11,48 +11,237 @@ body {
     margin: 0;
     padding: 0;
     user-select: none;
-    background: linear-gradient(#00000066, #00000066),
-    url("../wallpeper/chadrixy-cobblemon14.jpg") black no-repeat center center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     background-size: cover;
     background-attachment: fixed;
-    transition: background-image 1s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
 }
 
-/* Classes pour les thèmes Pokémon */
+/* Pokemon theme background support with particle effects */
+body[class*="pokemon-theme-"] {
+    background-attachment: fixed !important;
+}
+
+body[class*="pokemon-theme-"]::before {
+    background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    animation: particleFloat 20s ease-in-out infinite !important;
+}
+
+/* Wallpaper animations */
+@keyframes wallpaperFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(1.05);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px);
+    }
+}
+
+@keyframes backgroundShift {
+    0%, 100% {
+        background-position: center center;
+        transform: scale(1);
+    }
+    25% {
+        background-position: center top;
+        transform: scale(1.02);
+    }
+    50% {
+        background-position: center bottom;
+        transform: scale(1.01);
+    }
+    75% {
+        background-position: center top;
+        transform: scale(1.02);
+    }
+}
+
+/* Enhanced particle animation */
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.6;
+    }
+    25% {
+        transform: translateY(-10px) rotate(90deg);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(-5px) rotate(180deg);
+        opacity: 0.7;
+    }
+    75% {
+        transform: translateY(-15px) rotate(270deg);
+        opacity: 0.9;
+    }
+}
+
+/* Effet de particules animées en arrière-plan */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+    animation: particleFloat 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes particleFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-20px) rotate(120deg); }
+    66% { transform: translateY(20px) rotate(240deg); }
+}
+
+/* Thème moderne avec effets glassmorphism */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.neon-glow {
+    box-shadow: 
+        0 0 5px rgba(102, 126, 234, 0.5),
+        0 0 10px rgba(102, 126, 234, 0.3),
+        0 0 15px rgba(102, 126, 234, 0.2);
+}
+
+.modern-button {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.modern-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.modern-button:hover::before {
+    left: 100%;
+}
+
+.modern-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+/* Pokemon theme wallpaper classes with minimal overlay and animations */
 .pokemon-theme-1 {
-    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/GfxoSOma0AAKFs0.jpg') !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('../../wallpeper/GfxoSOma0AAKFs0.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    animation: wallpaperFadeIn 1.5s ease-in-out, backgroundShift 60s ease-in-out infinite !important;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .pokemon-theme-2 {
-    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/GsnykasWcAAHu2o.jpg') !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('../../wallpeper/GsnykasWcAAHu2o.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    animation: wallpaperFadeIn 1.5s ease-in-out, backgroundShift 60s ease-in-out infinite !important;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .pokemon-theme-3 {
-    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/chadrixy-cobblemon14.jpg') !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('../../wallpeper/chadrixy-cobblemon14.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    animation: wallpaperFadeIn 1.5s ease-in-out, backgroundShift 60s ease-in-out infinite !important;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .pokemon-theme-4 {
-    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/chadrixy-cobblemon19.jpg') !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('../../wallpeper/chadrixy-cobblemon19.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    animation: wallpaperFadeIn 1.5s ease-in-out, backgroundShift 60s ease-in-out infinite !important;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .pokemon-theme-5 {
-    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/chadrixy-cobblemon2.jpg') !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('../../wallpeper/chadrixy-cobblemon2.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    animation: wallpaperFadeIn 1.5s ease-in-out, backgroundShift 60s ease-in-out infinite !important;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .pokemon-theme-6 {
-    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/chadrixy-cobblemon4.jpg') !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('../../wallpeper/chadrixy-cobblemon4.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    animation: wallpaperFadeIn 1.5s ease-in-out, backgroundShift 60s ease-in-out infinite !important;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .pokemon-theme-7 {
-    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/chadrixy-cobblemon7.jpg') !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('../../wallpeper/chadrixy-cobblemon7.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    animation: wallpaperFadeIn 1.5s ease-in-out, backgroundShift 60s ease-in-out infinite !important;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .pokemon-theme-8 {
-    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/chadrixy-cobblemon8.jpg') !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('../../wallpeper/chadrixy-cobblemon8.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    animation: wallpaperFadeIn 1.5s ease-in-out, backgroundShift 60s ease-in-out infinite !important;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .pokemon-theme-9 {
-    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/cobblemon-banner-looks-epic-v0-oalspkbfms4d1.webp') !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url('../../wallpeper/cobblemon-banner-looks-epic-v0-oalspkbfms4d1.webp') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    animation: wallpaperFadeIn 1.5s ease-in-out, backgroundShift 60s ease-in-out infinite !important;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 img {
@@ -140,10 +329,11 @@ img {
     height: 16px;
     margin-left: 14px;
     margin-top: 12px;
-    background: #ffffff;
+    background: linear-gradient(45deg, #ffffff, #f0f0f0);
     border-radius: 50%;
     transform: translateX(0);
-    animation: dot 2.8s infinite;
+    animation: dot 2.8s infinite, dotPulse 1.5s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .dots {
@@ -159,19 +349,55 @@ img {
     width: 16px;
     height: 16px;
     margin-left: 16px;
-    background: #ffffff;
+    background: linear-gradient(45deg, #ffffff, #f0f0f0);
     border-radius: 50%;
+    animation: dotFloat 2s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.dots span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.dots span:nth-child(3) {
+    animation-delay: 0.6s;
 }
 
 @keyframes dot {
     50% {
-        transform: translateX(96px);
+        transform: translateX(96px) scale(1.2);
     }
 }
 
 @keyframes dots {
     50% {
         transform: translateX(-31px);
+    }
+}
+
+@keyframes dotPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.7;
+    }
+}
+
+@keyframes dotFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-8px) scale(1.1);
+        opacity: 0.8;
     }
 }
 
