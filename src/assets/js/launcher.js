@@ -31,6 +31,7 @@ class Launcher {
         this.createPanels(Login, Home, Settings);
         this.getAccounts();
         this.initDiscordRPC();
+        this.initPokemonWallpaperRotation();
     }
 
     initLog() {
@@ -260,6 +261,46 @@ class Launcher {
             : this.config.azauth.endsWith('/') 
             ? this.config.azauth 
             : `${this.config.azauth}/`;
+    }
+
+    initPokemonWallpaperRotation() {
+        const pokemonThemes = [
+            'pokemon-theme-1',
+            'pokemon-theme-2', 
+            'pokemon-theme-3',
+            'pokemon-theme-4',
+            'pokemon-theme-5',
+            'pokemon-theme-6',
+            'pokemon-theme-7',
+            'pokemon-theme-8',
+            'pokemon-theme-9'
+        ];
+        
+        let currentThemeIndex = 0;
+        
+        // Fonction pour changer le wallpaper
+        const changeWallpaper = () => {
+            // Supprimer toutes les classes de thème existantes
+            pokemonThemes.forEach(theme => {
+                document.body.classList.remove(theme);
+            });
+            
+            // Ajouter la nouvelle classe de thème
+            document.body.classList.add(pokemonThemes[currentThemeIndex]);
+            
+            // Passer au thème suivant
+            currentThemeIndex = (currentThemeIndex + 1) % pokemonThemes.length;
+            
+            console.log(`Wallpaper Pokémon changé vers: ${pokemonThemes[currentThemeIndex - 1 < 0 ? pokemonThemes.length - 1 : currentThemeIndex - 1]}`);
+        };
+        
+        // Changer le wallpaper immédiatement
+        changeWallpaper();
+        
+        // Changer le wallpaper toutes les 30 secondes
+        setInterval(changeWallpaper, 30000);
+        
+        console.log("Système de rotation des wallpapers Pokémon initialisé !");
     }
 }
 

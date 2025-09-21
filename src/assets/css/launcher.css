@@ -12,8 +12,47 @@ body {
     padding: 0;
     user-select: none;
     background: linear-gradient(#00000066, #00000066),
-    url("../images/background/light.jpg") black no-repeat center center;
-    background-size: cover; /* Ajout de cette propriété */
+    url("../wallpeper/chadrixy-cobblemon14.jpg") black no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    transition: background-image 1s ease-in-out;
+}
+
+/* Classes pour les thèmes Pokémon */
+.pokemon-theme-1 {
+    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/GfxoSOma0AAKFs0.jpg') !important;
+}
+
+.pokemon-theme-2 {
+    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/GsnykasWcAAHu2o.jpg') !important;
+}
+
+.pokemon-theme-3 {
+    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/chadrixy-cobblemon14.jpg') !important;
+}
+
+.pokemon-theme-4 {
+    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/chadrixy-cobblemon19.jpg') !important;
+}
+
+.pokemon-theme-5 {
+    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/chadrixy-cobblemon2.jpg') !important;
+}
+
+.pokemon-theme-6 {
+    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/chadrixy-cobblemon4.jpg') !important;
+}
+
+.pokemon-theme-7 {
+    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/chadrixy-cobblemon7.jpg') !important;
+}
+
+.pokemon-theme-8 {
+    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/chadrixy-cobblemon8.jpg') !important;
+}
+
+.pokemon-theme-9 {
+    background-image: linear-gradient(#00000080, #00000080), url('../../wallpeper/cobblemon-banner-looks-epic-v0-oalspkbfms4d1.webp') !important;
 }
 
 img {
