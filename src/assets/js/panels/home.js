@@ -135,6 +135,7 @@ class Home {
             ignored: [
                 ...(Array.isArray(this.config.ignored) ? this.config.ignored : Object.values(this.config.ignored)),
                 "launcher_config",
+                "options.txt",
             ],
             intelEnabledMac: process.platform === 'darwin' && process.arch === 'arm64',
             downloadFileMultiple: 30,

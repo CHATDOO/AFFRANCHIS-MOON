@@ -1,8 +1,8 @@
 {
-    "name": "AFFRANCHISMOON",
-    "preductname": "AFFRANCHISMOON Launcher",
+    "name": "AFFRANCHIS",
+    "preductname": "AFFRANCHIS Launcher",
     "version": "1.0.7",
-    "description": "AFFRANCHISMOON modded server launcher",
+    "description": "AFFRANCHIS modded server launcher",
     "main": "src/app.js",
     "author": "Riptiaz/Boulldogo/Vexato/Luuxis/CHATDOO",
     "env": "azuriom",
